@@ -13,9 +13,9 @@ test("all published tool cards have unique numbers and destinations", () => {
   const numbers = [...html.matchAll(/class="tool-number">(\d{2})</g)].map((match) => match[1]);
   const destinations = [...html.matchAll(/class="tool-card[^\"]*"[^>]*href="([^"]+)"/g)].map((match) => match[1]);
 
-  assert.equal(numbers.length, 18);
+  assert.equal(numbers.length, 19);
   assert.equal(new Set(numbers).size, numbers.length);
-  assert.equal(destinations.length, 18);
+  assert.equal(destinations.length, 19);
   assert.equal(new Set(destinations).size, destinations.length);
 });
 
