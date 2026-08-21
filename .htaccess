@@ -1,0 +1,7 @@
+RewriteEngine On
+
+# tools.iruagaru.com 以外から同じ公開フォルダを直接参照させない。
+RewriteCond %{HTTP_HOST} !^tools\.iruagaru\.com$ [NC]
+RewriteRule ^ - [F,L]
+
+Options -Indexes

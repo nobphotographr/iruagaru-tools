@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^(.*)$ https://tools.iruagaru.com/pdf-edit/$1 [R=301,L,NE]

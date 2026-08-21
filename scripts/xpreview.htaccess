@@ -1,0 +1,17 @@
+RewriteEngine On
+
+RewriteRule ^split(?:/(.*))?$ https://tools.iruagaru.com/image-splitter/$1 [R=301,L,NE]
+RewriteRule ^compose(?:/(.*))?$ https://tools.iruagaru.com/image-composer/$1 [R=301,L,NE]
+RewriteRule ^frame(?:/(.*))?$ https://tools.iruagaru.com/image-framer/$1 [R=301,L,NE]
+RewriteRule ^annotate(?:/(.*))?$ https://tools.iruagaru.com/image-annotator/$1 [R=301,L,NE]
+RewriteRule ^convert(?:/(.*))?$ https://tools.iruagaru.com/image-converter/$1 [R=301,L,NE]
+RewriteRule ^raw-to-dng(?:/(.*))?$ https://tools.iruagaru.com/raw-to-dng/$1 [R=301,L,NE]
+RewriteRule ^x3f-to-dng(?:/(.*))?$ https://tools.iruagaru.com/x3f-to-dng/$1 [R=301,L,NE]
+RewriteRule ^sequence(?:/(.*))?$ https://tools.iruagaru.com/photo-sequence/$1 [R=301,L,NE]
+RewriteRule ^compare(?:/(.*))?$ https://tools.iruagaru.com/photo-compare/$1 [R=301,L,NE]
+RewriteRule ^note-cover(?:/(.*))?$ https://tools.iruagaru.com/note-cover/$1 [R=301,L,NE]
+RewriteRule ^text(?:/(.*))?$ https://tools.iruagaru.com/text-formatter/$1 [R=301,L,NE]
+RewriteRule ^writing-checker(?:/(.*))?$ https://tools.iruagaru.com/writing-checker/$1 [R=301,L,NE]
+RewriteRule ^photo-metadata(?:/(.*))?$ https://tools.iruagaru.com/photo-metadata/$1 [R=301,L,NE]
+RewriteRule ^pdf-edit(?:/(.*))?$ https://tools.iruagaru.com/pdf-edit/$1 [R=301,L,NE]
+RewriteRule ^$ https://tools.iruagaru.com/post-preview/ [R=301,L]
