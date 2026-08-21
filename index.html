@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iruagaru tools — 制作のそばに置く、小さな道具</title>
+  <meta name="description" content="写真、画像、文章、PDF。制作のまわりにある小さな不便を整える、iruagaruのWebツール一覧です。">
+  <link rel="canonical" href="https://tools.iruagaru.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="iruagaru tools">
+  <meta property="og:title" content="iruagaru tools — 制作のそばに置く、小さな道具">
+  <meta property="og:description" content="写真、画像、文章、PDF。制作のまわりにある小さな不便を整えるWebツール一覧。">
+  <meta property="og:url" content="https://tools.iruagaru.com/">
+  <meta property="og:image" content="https://tools.iruagaru.com/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#f1eee6">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#tools">ツール一覧へ移動</a>
+
+  <header class="site-header">
+    <a class="wordmark" href="/" aria-label="iruagaru tools トップ">
+      <span>IRUAGARU</span>
+      <span class="wordmark-sub">TOOLS</span>
+    </a>
+    <nav class="header-nav" aria-label="外部サイト">
+      <a href="https://nobu.works/">Portfolio <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-index" aria-hidden="true">TOOLS / 2026</div>
+      <div class="hero-copy">
+        <h1 id="hero-title">制作のそばに置く、<br>小さな道具。</h1>
+      </div>
+      <div class="hero-note">
+        <p>撮る前、撮った後、書くとき、見せるまで。制作のまわりにある小さな不便を、それぞれに合うかたちで道具にしています。</p>
+        <p class="local-note"><span class="status-dot" aria-hidden="true"></span>多くのツールは、ファイルを外部へ送らずブラウザ内で処理します。</p>
+      </div>
+    </section>
+
+    <section class="tools-section" id="tools" aria-labelledby="tools-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">INDEX / 17 WEB APPS</p>
+          <h2 id="tools-title">道具を選ぶ</h2>
+        </div>
+        <div class="filters" role="group" aria-label="カテゴリーで絞り込む">
+          <button class="filter is-active" type="button" data-filter="all" aria-pressed="true">すべて</button>
+          <button class="filter" type="button" data-filter="photo" aria-pressed="false">写真</button>
+          <button class="filter" type="button" data-filter="image" aria-pressed="false">画像</button>
+          <button class="filter" type="button" data-filter="writing" aria-pressed="false">文章・PDF</button>
+          <button class="filter" type="button" data-filter="find" aria-pressed="false">探す</button>
+        </div>
+      </div>
+
+      <div class="tool-grid" aria-live="polite">
+        <a class="tool-card tool-card--feature" data-category="writing" href="/pdf-edit/">
+          <span class="tool-number">01</span>
+          <span class="tool-meta">PDF / LOCAL PROCESSING</span>
+          <strong>PDF Edit</strong>
+          <span class="tool-description">複数PDFの結合、ページの並べ替え・回転・削除を、ブラウザの中だけで。</span>
+          <span class="tool-open">Open tool <span aria-hidden="true">↗</span></span>
+        </a>
+
+        <a class="tool-card tool-card--feature" data-category="writing" href="/writing-checker/">
+          <span class="tool-number">02</span>
+          <span class="tool-meta">PROOFREAD / LOCAL PROCESSING</span>
+          <strong>Writing Checker</strong>
+          <span class="tool-description">長すぎる文や表記の揺れを、文章を送信せずブラウザの中だけで確認。</span>
+          <span class="tool-open">Open tool <span aria-hidden="true">↗</span></span>
+        </a>
+
+        <a class="tool-card tool-card--feature" data-category="photo" href="/photo-metadata/">
+          <span class="tool-number">03</span>
+          <span class="tool-meta">METADATA / LOCAL PROCESSING</span>
+          <strong>Photo Metadata</strong>
+          <span class="tool-description">写真に残るEXIF・IPTC・XMP・GPSなどの情報を、アップロードせず確認。</span>
+          <span class="tool-open">Open tool <span aria-hidden="true">↗</span></span>
+        </a>
+
+        <a class="tool-card" data-category="photo" href="/post-preview/">
+          <span class="tool-number">04</span>
+          <span class="tool-meta">PREVIEW / LOCAL PROCESSING</span>
+          <strong>Post Preview</strong>
+          <span class="tool-description">複数写真の並び、見切れ方、投稿文をスマートフォン表示で確認。</span>
+          <span class="tool-open">Open tool <span aria-hidden="true">↗</span></span>
+        </a>
+
+        <a class="tool-card" data-category="image" href="/image-splitter/">
+          <span class="tool-number">05</span>
+          <span class="tool-meta">SLICE / LOCAL PROCESSING</span>
+          <strong>Image Slicer</strong>
+          <span class="tool-description">横長の1枚を、つながった3枚または4枚のカルーセル画像へ。</span>
+          <span class="tool-open">Open tool <span aria-hidden="true">↗</span></span>
+        </a>
+
+        <a class="tool-card" data-category="image" href="/image-composer/">
+          <span class="tool-number">06</span>
+          <span class="tool-meta">COMPOSE / LOCAL PROCESSING</span>
+          <strong>Image Composer</strong>
+          <span class="tool-description">複数の写真を選び、並べ、動かして、1枚の組み写真へ。</span>
+          <span class="tool-open">Open tool <span aria-hidden="true">↗</span></span>
+        </a>
+
+        <a class="tool-card" data-category="image" href="/image-framer/">
+          <span class="tool-number">07</span>
+          <span class="tool-meta">FRAME / LOCAL PROCESSING</span>
+          <strong>Image Framer</strong>
+          <span class="tool-description">写真に余白と台紙を加え、静かに整えて保存する。</span>
+          <span class="tool-open">Open tool <span aria-hidden="true">↗</span></span>
+        </a>
+
+        <a class="tool-card" data-category="image" href="/image-annotator/">
+          <span class="tool-number">08</span>
+          <span class="tool-meta">ANNOTATE / LOCAL PROCESSING</span>
+          <strong>Image Annotator</strong>
+          <span class="tool-description">矢印、囲み、文字、モザイク。画像に説明をすばやく書き込む。</span>
+          <span class="tool-open">Open tool <span aria-hidden="true">↗</span></span>
+        </a>
+
+        <a class="tool-card" data-category="image" href="/image-converter/">
+          <span class="tool-number">09</span>
+          <span class="tool-meta">CONVERT / LOCAL PROCESSING</span>
+          <strong>Image Converter</strong>
+          <span class="tool-description">HEICやWebPを、アップロードせずJPEG・PNG・WebPへ変換。</span>
+          <span class="tool-open">Open tool <span aria-hidden="true">↗</span></span>
+        </a>
+
+        <a class="tool-card" data-category="photo" href="/raw-to-dng/">
+          <span class="tool-number">10</span>
+          <span class="tool-meta">DEVELOP / LOCAL PROCESSING</span>
+          <strong>RAW to DNG</strong>
+          <span class="tool-description">カメラRAWをアップロードせず、ブラウザ内でロスレスDNGへ。</span>
+          <span class="tool-open">Open beta <span aria-hidden="true">↗</span></span>
+        </a>
+
+        <a class="tool-card" data-category="photo" href="/x3f-to-dng/">
+          <span class="tool-number">11</span>
+          <span class="tool-meta">FOVEON / LOCAL PROCESSING</span>
+          <strong>X3F to DNG</strong>
+          <span class="tool-description">Sigma Merrill／QuattroのX3Fを、端末内でLinear DNGへ。</span>
+          <span class="tool-open">Open beta <span aria-hidden="true">↗</span></span>
+        </a>
+
+        <a class="tool-card" data-category="photo" href="/photo-sequence/">
+          <span class="tool-number">12</span>
+          <span class="tool-meta">SELECT / LOCAL PROCESSING</span>
+          <strong>Photo Sequence</strong>
+          <span class="tool-description">写真を選び、比べ、順番を整える。コンタクトシート出力まで。</span>
+          <span class="tool-open">Open tool <span aria-hidden="true">↗</span></span>
+        </a>
+
+        <a class="tool-card" data-category="photo" href="/photo-compare/">
+          <span class="tool-number">13</span>
+          <span class="tool-meta">COMPARE / LOCAL PROCESSING</span>
+          <strong>Photo Compare</strong>
+          <span class="tool-description">現像前後やプリセットの違いを、重ねて、並べて、1枚の比較画像へ。</span>
+          <span class="tool-open">Open tool <span aria-hidden="true">↗</span></span>
+        </a>
+
+        <a class="tool-card" data-category="image" href="/note-cover/">
+          <span class="tool-number">14</span>
+          <span class="tool-meta">COVER / LOCAL PROCESSING</span>
+          <strong>note Cover Maker</strong>
+          <span class="tool-description">写真とタイトルから、note向け1280×670の見出し画像を作成。</span>
+          <span class="tool-open">Open tool <span aria-hidden="true">↗</span></span>
+        </a>
+
+        <a class="tool-card" data-category="writing" href="/text-formatter/">
+          <span class="tool-number">15</span>
+          <span class="tool-meta">FORMAT / LOCAL PROCESSING</span>
+          <strong>Text Formatter</strong>
+          <span class="tool-description">生成AIの下書きに混ざる不自然な空白や改行を、文章を壊さず整える。</span>
+          <span class="tool-open">Open tool <span aria-hidden="true">↗</span></span>
+        </a>
+
+        <a class="tool-card tool-card--external" data-category="photo" href="https://negative.iruagaru.com/" target="_blank" rel="noreferrer noopener">
+          <span class="tool-number">16</span>
+          <span class="tool-meta">PRINT / EXTERNAL APP</span>
+          <strong>Digital Negative Maker</strong>
+          <span class="tool-description">16bit TIFFから、密着焼き用のデジタルネガを端末内で作成。</span>
+          <span class="tool-open">Open app <span aria-hidden="true">↗</span></span>
+        </a>
+
+        <a class="tool-card tool-card--external" data-category="find" href="https://exhibit.iruagaru.com/" target="_blank" rel="noreferrer noopener">
+          <span class="tool-number">17</span>
+          <span class="tool-meta">FIND / EXTERNAL SERVICE</span>
+          <strong>Exhibit Board</strong>
+          <span class="tool-description">全国の写真展や写真祭を、場所や会期から探せる展示情報ボード。</span>
+          <span class="tool-open">Visit project <span aria-hidden="true">↗</span></span>
+        </a>
+      </div>
+
+      <p class="no-results" hidden>このカテゴリーのツールはまだありません。</p>
+    </section>
+
+    <section class="principles" aria-labelledby="principles-title">
+      <p class="eyebrow">ABOUT / HOW THESE TOOLS WORK</p>
+      <div class="principles-grid">
+        <h2 id="principles-title">データを預けず、<br>すぐに使える。</h2>
+        <div class="principle-copy">
+          <p>「LOCAL PROCESSING」と記載したツールは、選んだ写真・文章・PDFをサーバーへ送信せず、お使いのブラウザ内で処理します。</p>
+          <p>アカウント登録もインストールも不要です。制作の途中で必要になったとき、ひらいて、使って、閉じられます。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>IRUAGARU / INDEPENDENT WEB TOOLS</span>
+    <span>MADE BY <a href="https://nobu.works/">NOBU</a></span>
+  </footer>
+
+  <script src="/assets/app.js" defer></script>
+</body>
+</html>

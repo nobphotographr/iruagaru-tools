@@ -1,0 +1,10 @@
+{
+  "name": "iruagaru-tools",
+  "version": "1.0.0",
+  "private": true,
+  "description": "iruagaruのWebツール一覧ポータル",
+  "scripts": {
+    "test": "node --test",
+    "serve": "python3 -m http.server 4173"
+  }
+}
