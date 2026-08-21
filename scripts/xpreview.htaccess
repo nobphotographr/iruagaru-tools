@@ -14,4 +14,5 @@ RewriteRule ^text(?:/(.*))?$ https://tools.iruagaru.com/text-formatter/$1 [R=301
 RewriteRule ^writing-checker(?:/(.*))?$ https://tools.iruagaru.com/writing-checker/$1 [R=301,L,NE]
 RewriteRule ^photo-metadata(?:/(.*))?$ https://tools.iruagaru.com/photo-metadata/$1 [R=301,L,NE]
 RewriteRule ^pdf-edit(?:/(.*))?$ https://tools.iruagaru.com/pdf-edit/$1 [R=301,L,NE]
+RewriteRule ^route-motion(?:/(.*))?$ https://tools.iruagaru.com/route-motion/$1 [R=301,L,NE]
 RewriteRule ^$ https://tools.iruagaru.com/post-preview/ [R=301,L]

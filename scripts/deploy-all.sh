@@ -40,6 +40,7 @@ build ai-text-formatter test
 build writing-checker test
 build photo-metadata-inspector test
 build pdf-edit test
+build route-motion check
 
 "${GITHUB_ROOT}/iruagaru-tools/deploy.sh"
 
@@ -71,5 +72,6 @@ deploy_dir "${TEXT_FORMATTER_STAGE}" text-formatter
 deploy_dir "${GITHUB_ROOT}/writing-checker/out" writing-checker
 deploy_dir "${GITHUB_ROOT}/photo-metadata-inspector/out" photo-metadata
 deploy_dir "${GITHUB_ROOT}/pdf-edit/out" pdf-edit
+deploy_dir "${GITHUB_ROOT}/route-motion/out" route-motion
 
 echo "Published all static tools to https://tools.iruagaru.com/"
