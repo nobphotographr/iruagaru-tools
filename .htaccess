@@ -4,4 +4,8 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} !^tools\.iruagaru\.com$ [NC]
 RewriteRule ^ - [F,L]
 
+# サブドメインの反映後は、すべてのツールをHTTPSへ統一する。
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://tools.iruagaru.com%{REQUEST_URI} [R=301,L]
+
 Options -Indexes
