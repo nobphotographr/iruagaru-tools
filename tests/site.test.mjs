@@ -13,9 +13,9 @@ test("all published tool cards have unique numbers and destinations", () => {
   const numbers = [...html.matchAll(/class="tool-number">(\d{2})</g)].map((match) => match[1]);
   const destinations = [...html.matchAll(/class="tool-card[^\"]*"[^>]*href="([^"]+)"/g)].map((match) => match[1]);
 
-  assert.equal(numbers.length, 19);
+  assert.equal(numbers.length, 20);
   assert.equal(new Set(numbers).size, numbers.length);
-  assert.equal(destinations.length, 19);
+  assert.equal(destinations.length, 20);
   assert.equal(new Set(destinations).size, destinations.length);
 });
 
@@ -36,4 +36,15 @@ test("Route Motion distinguishes local photos from online map processing", () =>
   assert.match(card, /JOURNEY \/ LOCAL PHOTOS/);
   assert.doesNotMatch(card, /LOCAL PROCESSING/);
   assert.match(card, /写真は送信せず/);
+});
+
+test("Grade Motion is listed as a locally processed photo tool", () => {
+  const start = html.indexOf('href="/grade-motion/"');
+  const end = html.indexOf("</a>", start);
+  const card = html.slice(start, end);
+
+  assert.notEqual(start, -1);
+  assert.match(card, /GRADE \/ LOCAL PROCESSING/);
+  assert.match(card, /Grade Motion/);
+  assert.match(card, /端末内で比較動画やGIFへ/);
 });
