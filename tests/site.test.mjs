@@ -13,9 +13,9 @@ test("all published tool cards have unique numbers and destinations", () => {
   const numbers = [...html.matchAll(/class="tool-number">(\d{2})</g)].map((match) => match[1]);
   const destinations = [...html.matchAll(/class="tool-card[^\"]*"[^>]*href="([^"]+)"/g)].map((match) => match[1]);
 
-  assert.equal(numbers.length, 20);
+  assert.equal(numbers.length, 21);
   assert.equal(new Set(numbers).size, numbers.length);
-  assert.equal(destinations.length, 20);
+  assert.equal(destinations.length, 21);
   assert.equal(new Set(destinations).size, destinations.length);
 });
 
@@ -47,4 +47,15 @@ test("Grade Motion is listed as a locally processed photo tool", () => {
   assert.match(card, /GRADE \/ LOCAL PROCESSING/);
   assert.match(card, /Grade Motion/);
   assert.match(card, /端末内で比較動画やGIFへ/);
+});
+
+test("Video Contact Sheet is listed as a locally processed photo tool", () => {
+  const start = html.indexOf('href="/video-contact-sheet/"');
+  const end = html.indexOf("</a>", start);
+  const card = html.slice(start, end);
+
+  assert.notEqual(start, -1);
+  assert.match(card, /VIDEO REVIEW \/ LOCAL PROCESSING/);
+  assert.match(card, /Video Contact Sheet/);
+  assert.match(card, /代表フレーム/);
 });
