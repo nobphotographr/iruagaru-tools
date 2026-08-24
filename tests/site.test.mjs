@@ -26,3 +26,14 @@ test("filter controls and filtering logic are present", () => {
   assert.match(html, /data-filter="writing"/);
   assert.match(js, /card\.hidden = !visible/);
 });
+
+test("Route Motion distinguishes local photos from online map processing", () => {
+  const start = html.indexOf('href="/route-motion/"');
+  const end = html.indexOf("</a>", start);
+  const card = html.slice(start, end);
+
+  assert.notEqual(start, -1);
+  assert.match(card, /JOURNEY \/ LOCAL PHOTOS/);
+  assert.doesNotMatch(card, /LOCAL PROCESSING/);
+  assert.match(card, /写真は送信せず/);
+});
