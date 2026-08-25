@@ -45,6 +45,7 @@ build emoji-sheet check
 build grade-motion check
 build video-contact-sheet check
 build tax-reserve check
+build expense-guide check
 
 "${GITHUB_ROOT}/iruagaru-tools/deploy.sh"
 
@@ -81,5 +82,6 @@ deploy_dir "${GITHUB_ROOT}/emoji-sheet/out" emoji-sheet
 deploy_dir "${GITHUB_ROOT}/grade-motion/out" grade-motion
 deploy_dir "${GITHUB_ROOT}/video-contact-sheet/out" video-contact-sheet
 deploy_dir "${GITHUB_ROOT}/tax-reserve/out" tax-reserve
+deploy_dir "${GITHUB_ROOT}/expense-guide/out" expense-guide
 
 echo "Published all static tools to https://tools.iruagaru.com/"
