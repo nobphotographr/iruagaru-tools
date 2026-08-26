@@ -7,6 +7,9 @@ REMOTE_PORT="${IRUAGARU_SSH_PORT:-10022}"
 SSH_KEY="${IRUAGARU_SSH_KEY:-/Users/nobu/.ssh/id_ed25519}"
 REMOTE_ROOT="${IRUAGARU_REMOTE_ROOT:-/home/xs360830/iruagaru.com/public_html/tools}"
 SSH_COMMAND="ssh -i ${SSH_KEY} -p ${REMOTE_PORT}"
+DEPLOY_STAGE_ROOT="$(mktemp -d)"
+
+trap 'rm -rf "${DEPLOY_STAGE_ROOT}"' EXIT
 
 build() {
   local project="$1"
@@ -18,10 +21,15 @@ build() {
 deploy_dir() {
   local source="$1"
   local slug="$2"
+  local staged_source="${DEPLOY_STAGE_ROOT}/${slug}"
+
+  node "${GITHUB_ROOT}/iruagaru-tools/scripts/stage-for-deploy.mjs" \
+    "${source}" "${staged_source}"
+
   echo "==> Publishing ${slug}"
   ssh -i "${SSH_KEY}" -p "${REMOTE_PORT}" "${REMOTE_HOST}" "mkdir -p '${REMOTE_ROOT}/${slug}'"
   rsync -az --delete --exclude '.DS_Store' -e "${SSH_COMMAND}" \
-    "${source}/" "${REMOTE_HOST}:${REMOTE_ROOT}/${slug}/"
+    "${staged_source}/" "${REMOTE_HOST}:${REMOTE_ROOT}/${slug}/"
 }
 
 npm --prefix "${GITHUB_ROOT}/iruagaru-tools" test
@@ -61,8 +69,8 @@ deploy_dir "${GITHUB_ROOT}/photo-sequencer/out" photo-sequence
 deploy_dir "${GITHUB_ROOT}/photo-compare/out" photo-compare
 deploy_dir "${GITHUB_ROOT}/note-cover-maker/out" note-cover
 
-TEXT_FORMATTER_STAGE="$(mktemp -d)"
-trap 'rm -rf "${TEXT_FORMATTER_STAGE}"' EXIT
+TEXT_FORMATTER_STAGE="${DEPLOY_STAGE_ROOT}/text-formatter-source"
+mkdir -p "${TEXT_FORMATTER_STAGE}"
 cp "${GITHUB_ROOT}/ai-text-formatter/index.html" "${TEXT_FORMATTER_STAGE}/"
 cp "${GITHUB_ROOT}/ai-text-formatter/style.css" "${TEXT_FORMATTER_STAGE}/"
 cp "${GITHUB_ROOT}/ai-text-formatter/script.js" "${TEXT_FORMATTER_STAGE}/"

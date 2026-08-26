@@ -1,12 +1,59 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import test from "node:test";
+import { injectAnalytics, stageForDeploy } from "../scripts/stage-for-deploy.mjs";
 
 const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
 const js = await readFile(new URL("../assets/app.js", import.meta.url), "utf8");
+const analytics = await readFile(new URL("../assets/analytics.js", import.meta.url), "utf8");
 
 test("canonical URL points to the tools domain", () => {
   assert.match(html, /<link rel="canonical" href="https:\/\/tools\.iruagaru\.com\/">/);
+});
+
+test("the portal loads privacy-minimized shared analytics", () => {
+  assert.match(html, /<script src="\/assets\/analytics\.js" defer><\/script>/);
+  assert.match(html, /選んだファイルや入力内容は計測対象にしません/);
+  assert.match(analytics, /G-TPNYPSDE2K/);
+  assert.match(analytics, /window\.location\.origin/);
+  assert.match(analytics, /window\.location\.pathname/);
+  assert.match(analytics, /referrerUrl\.origin/);
+  assert.match(analytics, /referrerUrl\.pathname/);
+  assert.doesNotMatch(analytics, /window\.location\.search/);
+  assert.doesNotMatch(analytics, /window\.location\.hash/);
+  assert.match(analytics, /allow_google_signals: false/);
+  assert.match(analytics, /allow_ad_personalization_signals: false/);
+  assert.doesNotMatch(analytics, /gtag\("event"/);
+});
+
+test("deployment staging injects analytics without changing source files", async () => {
+  const root = await mkdtemp(join(tmpdir(), "iruagaru-tools-test-"));
+  const source = join(root, "source");
+  const destination = join(root, "destination");
+
+  try {
+    await mkdir(source);
+    const original = "<!doctype html><html><head><title>Tool</title></head><body></body></html>";
+    await writeFile(join(source, "index.html"), original);
+
+    await stageForDeploy(source, destination);
+
+    assert.equal(await readFile(join(source, "index.html"), "utf8"), original);
+    assert.match(
+      await readFile(join(destination, "index.html"), "utf8"),
+      /<script src="\/assets\/analytics\.js" defer><\/script>/,
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("analytics injection is idempotent and rejects malformed HTML", () => {
+  const once = injectAnalytics("<html><head></head><body></body></html>");
+  assert.equal(injectAnalytics(once), once);
+  assert.throws(() => injectAnalytics("<html><body></body></html>"), /closing <\/head>/);
 });
 
 test("all published tool cards have unique numbers and destinations", () => {
