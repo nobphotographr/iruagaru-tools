@@ -60,9 +60,9 @@ test("all published tool cards have unique numbers and destinations", () => {
   const numbers = [...html.matchAll(/class="tool-number">(\d{2})</g)].map((match) => match[1]);
   const destinations = [...html.matchAll(/class="tool-card[^\"]*"[^>]*href="([^"]+)"/g)].map((match) => match[1]);
 
-  assert.equal(numbers.length, 23);
+  assert.equal(numbers.length, 24);
   assert.equal(new Set(numbers).size, numbers.length);
-  assert.equal(destinations.length, 23);
+  assert.equal(destinations.length, 24);
   assert.equal(new Set(destinations).size, destinations.length);
 });
 
@@ -97,6 +97,18 @@ test("Expense Guide is listed as a 2026 local organizer", () => {
   assert.match(card, /Expense Guide/);
   assert.match(card, /家事按分/);
   assert.match(card, /端末内で整理/);
+});
+
+test("Deadline Guide is listed as a 2026–27 local annual planner", () => {
+  const start = html.indexOf('href="/deadline-guide/"');
+  const end = html.indexOf("</a>", start);
+  const card = html.slice(start, end);
+
+  assert.notEqual(start, -1);
+  assert.match(card, /2026–27 ANNUAL PLAN \/ LOCAL PROCESSING/);
+  assert.match(card, /Deadline Guide/);
+  assert.match(card, /申告期までのお金/);
+  assert.match(card, /端末内でひとつに整理/);
 });
 
 test("Route Motion distinguishes local photos from online map processing", () => {
