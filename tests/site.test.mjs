@@ -60,9 +60,9 @@ test("all published tool cards have unique numbers and destinations", () => {
   const numbers = [...html.matchAll(/class="tool-number">(\d{2})</g)].map((match) => match[1]);
   const destinations = [...html.matchAll(/class="tool-card[^\"]*"[^>]*href="([^"]+)"/g)].map((match) => match[1]);
 
-  assert.equal(numbers.length, 24);
+  assert.equal(numbers.length, 25);
   assert.equal(new Set(numbers).size, numbers.length);
-  assert.equal(destinations.length, 24);
+  assert.equal(destinations.length, 25);
   assert.equal(new Set(destinations).size, destinations.length);
 });
 
@@ -109,6 +109,19 @@ test("Deadline Guide is listed as a 2026–27 local annual planner", () => {
   assert.match(card, /Deadline Guide/);
   assert.match(card, /申告期までのお金/);
   assert.match(card, /端末内でひとつに整理/);
+});
+
+test("Grant Radar describes official API search and device-only favorites", () => {
+  const start = html.indexOf('href="/grant-radar/"');
+  const end = html.indexOf("</a>", start);
+  const card = html.slice(start, end);
+
+  assert.notEqual(start, -1);
+  assert.match(card, /JGRANTS API \/ DEVICE FAVORITES/);
+  assert.match(card, /Grant Radar/);
+  assert.match(card, /Jグランツ公式データ/);
+  assert.match(card, /端末内に保存/);
+  assert.doesNotMatch(card, /LOCAL PROCESSING/);
 });
 
 test("Route Motion distinguishes local photos from online map processing", () => {

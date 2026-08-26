@@ -55,6 +55,7 @@ build video-contact-sheet check
 build tax-reserve check
 build expense-guide check
 build deadline-guide check
+build grant-radar check
 
 "${GITHUB_ROOT}/iruagaru-tools/deploy.sh"
 
@@ -93,5 +94,6 @@ deploy_dir "${GITHUB_ROOT}/video-contact-sheet/out" video-contact-sheet
 deploy_dir "${GITHUB_ROOT}/tax-reserve/out" tax-reserve
 deploy_dir "${GITHUB_ROOT}/expense-guide/out" expense-guide
 deploy_dir "${GITHUB_ROOT}/deadline-guide/out" deadline-guide
+deploy_dir "${GITHUB_ROOT}/grant-radar/out" grant-radar
 
 echo "Published all static tools to https://tools.iruagaru.com/"
