@@ -13,7 +13,7 @@ ssh -i "${SSH_KEY}" -p "${REMOTE_PORT}" "${REMOTE_HOST}" \
 
 rsync -az \
   -e "ssh -i ${SSH_KEY} -p ${REMOTE_PORT}" \
-  index.html .htaccess "${REMOTE_HOST}:${REMOTE_ROOT}/"
+  index.html .htaccess robots.txt sitemap.xml "${REMOTE_HOST}:${REMOTE_ROOT}/"
 
 rsync -az --delete \
   -e "ssh -i ${SSH_KEY} -p ${REMOTE_PORT}" \

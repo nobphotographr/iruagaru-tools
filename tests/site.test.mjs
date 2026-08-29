@@ -8,6 +8,8 @@ import { injectAnalytics, stageForDeploy } from "../scripts/stage-for-deploy.mjs
 const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
 const js = await readFile(new URL("../assets/app.js", import.meta.url), "utf8");
 const analytics = await readFile(new URL("../assets/analytics.js", import.meta.url), "utf8");
+const robots = await readFile(new URL("../robots.txt", import.meta.url), "utf8");
+const sitemap = await readFile(new URL("../sitemap.xml", import.meta.url), "utf8");
 
 test("canonical URL points to the tools domain", () => {
   assert.match(html, /<link rel="canonical" href="https:\/\/tools\.iruagaru\.com\/">/);
@@ -64,6 +66,35 @@ test("all published tool cards have unique numbers and destinations", () => {
   assert.equal(new Set(numbers).size, numbers.length);
   assert.equal(destinations.length, 25);
   assert.equal(new Set(destinations).size, destinations.length);
+});
+
+test("the sitemap lists the portal and every tool hosted on this domain", () => {
+  const internalDestinations = [...html.matchAll(/class="tool-card[^\"]*"[^>]*href="(\/[^"]+)"/g)]
+    .map((match) => `https://tools.iruagaru.com${match[1]}`)
+    .sort();
+  const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)]
+    .map((match) => match[1])
+    .sort();
+
+  assert.match(sitemap, /<urlset xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9">/);
+  assert.deepEqual(sitemapUrls, ["https://tools.iruagaru.com/", ...internalDestinations].sort());
+});
+
+test("robots.txt allows crawling and advertises the sitemap", () => {
+  assert.match(robots, /^User-agent: \*$/m);
+  assert.match(robots, /^Allow: \/$/m);
+  assert.match(robots, /^Sitemap: https:\/\/tools\.iruagaru\.com\/sitemap\.xml$/m);
+});
+
+test("Image Splitter uses the search-facing product name and current split range", () => {
+  const start = html.indexOf('href="/image-splitter/"');
+  const end = html.indexOf("</a>", start);
+  const card = html.slice(start, end);
+
+  assert.notEqual(start, -1);
+  assert.match(card, /Image Splitter/);
+  assert.match(card, /2〜4枚/);
+  assert.doesNotMatch(card, /Image Slicer/);
 });
 
 test("filter controls and filtering logic are present", () => {
