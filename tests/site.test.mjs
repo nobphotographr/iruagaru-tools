@@ -10,6 +10,7 @@ const js = await readFile(new URL("../assets/app.js", import.meta.url), "utf8");
 const analytics = await readFile(new URL("../assets/analytics.js", import.meta.url), "utf8");
 const robots = await readFile(new URL("../robots.txt", import.meta.url), "utf8");
 const sitemap = await readFile(new URL("../sitemap.xml", import.meta.url), "utf8");
+const xpreviewRedirects = await readFile(new URL("../scripts/xpreview.htaccess", import.meta.url), "utf8");
 
 test("canonical URL points to the tools domain", () => {
   assert.match(html, /<link rel="canonical" href="https:\/\/tools\.iruagaru\.com\/">/);
@@ -95,6 +96,26 @@ test("Image Splitter uses the search-facing product name and current split range
   assert.match(card, /Image Splitter/);
   assert.match(card, /2〜4枚/);
   assert.doesNotMatch(card, /Image Slicer/);
+});
+
+test("legacy xpreview URLs permanently redirect to their canonical tools URLs", () => {
+  const redirects = [
+    ["split", "image-splitter"],
+    ["frame", "image-framer"],
+    ["compare", "photo-compare"],
+    ["sequence", "photo-sequence"],
+  ];
+
+  for (const [legacyPath, canonicalPath] of redirects) {
+    assert.match(
+      xpreviewRedirects,
+      new RegExp(`RewriteRule \\^${legacyPath}.*https://tools\\.iruagaru\\.com/${canonicalPath}/.*\\[R=301,L,NE\\]`),
+    );
+  }
+  assert.match(
+    xpreviewRedirects,
+    /RewriteRule \^\$ https:\/\/tools\.iruagaru\.com\/post-preview\/ \[R=301,L\]/,
+  );
 });
 
 test("filter controls and filtering logic are present", () => {
